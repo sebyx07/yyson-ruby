@@ -2,13 +2,31 @@
 
 require_relative 'yyjson/version'
 
+# Load the native extension
+# Try multiple locations for different environments
+extension_loaded = false
+
+# 1. Try the installed gem location (lib/yyjson/)
 begin
-  # Try to require the extension from the build directory
-  RUBY_VERSION =~ /(\d+\.\d+)/
-  require_relative "../ext/yyjson/yyjson"
+  require_relative 'yyjson/yyjson'
+  extension_loaded = true
 rescue LoadError
-  # Fall back to the installed version
-  require 'yyjson/yyjson'
+  # Not found in lib/yyjson/
+end
+
+# 2. Try the development build location (ext/yyjson/)
+unless extension_loaded
+  begin
+    require_relative '../ext/yyjson/yyjson'
+    extension_loaded = true
+  rescue LoadError
+    # Not found in ext/yyjson/
+  end
+end
+
+unless extension_loaded
+  raise LoadError, "Could not load yyjson native extension. " \
+                   "Run 'rake compile' to build it."
 end
 
 module YYJson

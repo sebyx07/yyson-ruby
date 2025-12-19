@@ -7,9 +7,8 @@ require 'minitest/autorun'
 require 'tempfile'
 require 'fileutils'
 
-# Load yyjson from development environment
-require_relative '../lib/yyjson'
-require_relative '../ext/yyjson/yyjson'
+# Load yyjson - this handles finding the extension automatically
+require 'yyjson'
 
 module TestHelpers
   # Create a temporary JSON file with the given content

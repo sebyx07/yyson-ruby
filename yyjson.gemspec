@@ -17,11 +17,8 @@ Gem::Specification.new do |spec|
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.0.0'
 
-  spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/sebyx07/yyson-ruby'
   spec.metadata['changelog_uri'] = 'https://github.com/sebyx07/yyson-ruby/blob/main/CHANGELOG.md'
   spec.metadata['bug_tracker_uri'] = 'https://github.com/sebyx07/yyson-ruby/issues'
-  spec.metadata['documentation_uri'] = 'https://github.com/sebyx07/yyson-ruby#readme'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
   # Specify which files should be added to the gem when it is released
@@ -43,5 +40,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'benchmark-ips', '~> 2.0'
 
   # Runtime dependencies
-  spec.add_dependency 'bigdecimal', '>= 1.0'
+  spec.add_dependency 'bigdecimal', '~> 3.0'
 end

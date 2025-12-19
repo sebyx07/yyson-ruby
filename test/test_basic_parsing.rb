@@ -1,6 +1,6 @@
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'minitest/autorun'
-require_relative '../lib/yyjson'
-require_relative '../ext/yyjson/yyjson'
+require 'yyjson'
 
 class TestBasicParsing < Minitest::Test
   def test_parse_empty_object

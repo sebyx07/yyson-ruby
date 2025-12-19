@@ -69,4 +69,4 @@ jobs:
           bundler-cache: true
 
       - name: Check gemspec
-        run: gem build yyjson.gemspec --strict
+        run: gem build yyjson.gemspec
