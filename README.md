@@ -2,7 +2,7 @@
 
 Ultra-fast JSON parser and generator for Ruby, powered by [yyjson](https://github.com/ibireme/yyjson).
 
-[![CI](https://github.com/sebyx07/yyjson-ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/sebyx07/yyjson-ruby/actions)
+[![CI](https://github.com/sebyx07/yyson-ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/sebyx07/yyson-ruby/actions)
 [![Gem Version](https://badge.fury.io/rb/yyjson.svg)](https://badge.fury.io/rb/yyjson)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Ruby](https://img.shields.io/badge/ruby-%3E%3D%203.0-ruby.svg)](https://www.ruby-lang.org)
@@ -163,7 +163,7 @@ See [docs/BENCHMARKS.md](docs/BENCHMARKS.md) for detailed benchmark methodology.
 
 ```bash
 # Clone the repository
-git clone https://github.com/sebyx07/yyjson-ruby.git
+git clone https://github.com/sebyx07/yyson-ruby.git
 cd yyjson-ruby
 
 # Install dependencies

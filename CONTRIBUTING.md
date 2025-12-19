@@ -26,7 +26,7 @@ Feature requests are welcome! Please describe:
 
 1. Fork and clone the repository:
    ```bash
-   git clone https://github.com/sebyx07/yyjson-ruby.git
+   git clone https://github.com/sebyx07/yyson-ruby.git
    cd yyjson-ruby
    ```
 
