@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'time' # For Time#iso8601
+
 module BenchmarkDataGenerator
   # Generate a simple hash
   def self.simple_hash(size: 10)
