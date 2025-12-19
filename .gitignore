@@ -9,8 +9,14 @@ ext/yyjson/Makefile
 ext/yyjson/mkmf.log
 ext/yyjson/*.o
 
-# Vendor directory (yyjson is auto-downloaded)
-ext/yyjson/vendor/
+# Vendor directory - only ignore downloaded archives, not source files
+ext/yyjson/vendor/*.tar.gz
+ext/yyjson/vendor/yyjson-*/test/
+ext/yyjson/vendor/yyjson-*/doc/
+ext/yyjson/vendor/yyjson-*/fuzz/
+ext/yyjson/vendor/yyjson-*/misc/
+ext/yyjson/vendor/yyjson-*/cmake/
+ext/yyjson/vendor/yyjson-*/.github/
 
 # Gem build
 *.gem
