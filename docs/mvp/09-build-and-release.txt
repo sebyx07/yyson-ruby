@@ -1,0 +1,115 @@
+YYJson MVP: Build System & Release Process
+==========================================
+
+[ ] Create Rakefile - Build automation
+    [ ] Task: rake compile
+        - Compiles C extension
+        - Runs extconf.rb
+        - Runs make
+        - Copies .so to lib/yyjson/
+    [ ] Task: rake clean
+        - Removes compiled files
+        - Removes Makefile
+        - Removes vendor directory
+    [ ] Task: rake test
+        - Compiles extension if needed
+        - Runs all tests in test/
+        - Exits with failure if tests fail
+    [ ] Task: rake benchmark
+        - Compiles extension if needed
+        - Runs all benchmarks in benchmark/
+        - Optionally saves results to file
+    [ ] Task: rake default (runs test)
+    [ ] Use rake-compiler gem for cross-platform builds
+
+[ ] Set up GitHub repository
+    [ ] Create .gitignore
+        - *.so (compiled extensions)
+        - ext/yyjson/vendor/ (downloaded yyjson)
+        - ext/yyjson/*.o
+        - ext/yyjson/Makefile
+        - Gemfile.lock
+        - .bundle/
+        - pkg/ (gem builds)
+        - tmp/
+    [ ] Create repository on GitHub
+    [ ] Push initial code
+    [ ] Set up GitHub topics (ruby, json, parser, performance)
+
+[ ] Set up GitHub Actions CI
+    [ ] Create .github/workflows/ci.yml
+    [ ] Test matrix:
+        - Ruby versions: 3.0, 3.1, 3.2, 3.3
+        - OS: ubuntu-latest, macos-latest
+    [ ] Steps:
+        - Checkout code
+        - Set up Ruby
+        - Bundle install
+        - Compile extension
+        - Run tests
+        - Run benchmarks (optional, on master only)
+    [ ] Badge in README showing CI status
+
+[ ] Create gem build configuration
+    [ ] Verify gemspec includes all necessary files
+    [ ] Exclude test/benchmark files from gem
+    [ ] Include documentation files
+    [ ] Set required Ruby version (>= 3.0.0)
+    [ ] Set homepage, source_code_uri, changelog_uri
+
+[ ] Pre-release checklist
+    [ ] All tests passing
+    [ ] Benchmarks show expected performance
+    [ ] Documentation complete and accurate
+    [ ] CHANGELOG.md updated
+    [ ] Version bumped in lib/yyjson/version.rb
+    [ ] README examples tested manually
+    [ ] Rails integration tested in real Rails app
+    [ ] No memory leaks (Valgrind clean)
+    [ ] Code reviewed
+
+[ ] Build and test gem locally
+    [ ] Run: gem build yyjson.gemspec
+    [ ] Creates yyjson-0.1.0.gem
+    [ ] Install locally: gem install ./yyjson-0.1.0.gem
+    [ ] Test in clean Ruby environment
+    [ ] Verify require 'yyjson' works
+    [ ] Verify basic functionality
+    [ ] Uninstall: gem uninstall yyjson
+
+[ ] Release to RubyGems.org
+    [ ] Create account on rubygems.org
+    [ ] Configure gem credentials
+    [ ] Run: gem push yyjson-0.1.0.gem
+    [ ] Verify gem appears on rubygems.org
+    [ ] Test: gem install yyjson
+
+[ ] Create GitHub release
+    [ ] Tag version: git tag v0.1.0
+    [ ] Push tags: git push --tags
+    [ ] Create release on GitHub
+    [ ] Attach .gem file to release
+    [ ] Copy CHANGELOG for this version to release notes
+    [ ] Announce release
+
+[ ] Post-release tasks
+    [ ] Announce on Ruby forum/Reddit/Twitter
+    [ ] Submit to Ruby Weekly
+    [ ] Update documentation links
+    [ ] Monitor issue tracker for bug reports
+    [ ] Plan next version features
+
+[ ] Version management
+    [ ] Follow semantic versioning (MAJOR.MINOR.PATCH)
+    [ ] MAJOR: Breaking changes
+    [ ] MINOR: New features, backwards compatible
+    [ ] PATCH: Bug fixes only
+    [ ] Update CHANGELOG for each release
+
+[ ] Maintenance plan
+    [ ] Monitor yyjson C library for updates
+    [ ] Update yyjson when new versions released
+    [ ] Keep up with Ruby version releases
+    [ ] Test with new Ruby versions (3.4, etc.)
+    [ ] Respond to issues within 1 week
+    [ ] Security updates ASAP

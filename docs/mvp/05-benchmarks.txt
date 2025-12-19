@@ -1,0 +1,88 @@
+YYJson MVP: Comprehensive Benchmarking Suite
+============================================
+
+Inspired by: Oj's perf_*.rb suite + zsv-ruby benchmarks
+
+[X] Set up benchmark framework
+    [X] Use benchmark-ips gem for iterations/sec
+    [X] Create benchmark/support/data_generator.rb for test data
+    [X] Generate various JSON payloads (small, medium, large, nested)
+    [X] Create benchmark/support/helpers.rb for common utilities
+
+[X] Create benchmark/parse_simple.rb - Basic parsing
+    [X] Small JSON object (< 1KB)
+    [X] Medium JSON object (10-100KB)
+    [X] Large JSON array (1MB+)
+    [X] Deeply nested structures
+    [X] Compare: YYJson vs JSON gem vs Oj vs Yajl-ruby
+    [X] Show iterations/sec and relative speedup
+
+[ ] Create benchmark/parse_rails.rb - Rails-like data
+    [X] ActiveRecord-style JSON (array of objects)
+    [X] Timestamps (ISO8601 strings)
+    [X] Mixed types (strings, numbers, nulls, booleans)
+    [X] Typical API response format
+    [ ] Compare with mode: :rails
+
+[X] Create benchmark/generate_simple.rb - Basic generation
+    [X] Hash → JSON
+    [X] Array → JSON
+    [X] Nested structures → JSON
+    [X] Compare: YYJson vs JSON gem vs Oj vs MultiJson
+    [X] Pretty vs compact output
+
+[ ] Create benchmark/generate_rails.rb - Rails serialization
+    [ ] Simulate ActiveRecord .to_json
+    [ ] Include as_json() calls
+    [ ] Benchmark with ActiveSupport loaded
+    [ ] Compare optimized vs unoptimized
+
+[ ] Create benchmark/memory.rb - Memory profiling
+    [ ] Use memory_profiler gem
+    [ ] Measure allocated objects during parse
+    [ ] Measure allocated objects during generate
+    [ ] Compare frozen vs unfrozen strings
+    [ ] Show memory savings from pre-allocation
+    [ ] Verify smart allocation is working
+
+[X] Create benchmark/round_trip.rb - Parse + generate
+    [X] Load JSON → modify → dump JSON
+    [X] Measure total time
+    [X] Real-world usage pattern
+
+[ ] Create benchmark/file_io.rb - File operations
+    [ ] load_file() vs File.read + parse
+    [ ] dump_file() vs generate + File.write
+    [ ] Large file handling (100MB+ JSON)
+
+[ ] Add comparison benchmarks
+    [ ] benchmark/vs_json.rb - vs standard JSON gem
+    [ ] benchmark/vs_oj.rb - vs Oj gem
+    [ ] benchmark/vs_yajl.rb - vs Yajl-ruby
+    [ ] Show feature comparison table
+
+[ ] Create realistic benchmarks
+    [ ] benchmark/api_response.rb - REST API JSON
+    [ ] benchmark/config_file.rb - Large config JSON
+    [ ] benchmark/logs.rb - JSON log entries
+    [ ] benchmark/geojson.rb - GeoJSON data
+
+[ ] Document benchmark results
+    [ ] Create docs/BENCHMARKS.md
+    [ ] Include graphs/charts of results
+    [ ] Show speedup multipliers (e.g., "3.5x faster")
+    [ ] Break down by operation (parse/generate)
+    [ ] Include memory comparison charts
+    [ ] Show performance across Ruby versions (3.0, 3.1, 3.2, 3.3)
+
+[ ] Set up continuous benchmarking
+    [ ] Add rake benchmark task
+    [ ] Run on CI for performance regression detection
+    [ ] Compare against previous version
+    [ ] Alert on > 10% slowdown
+
+[ ] Verify performance goals
+    [ ] Faster than JSON gem (target: 2-5x)
+    [ ] Competitive with Oj (target: within 20%)
+    [ ] Lower memory usage (target: 30-50% reduction)
+    [ ] Faster Rails integration than alternatives

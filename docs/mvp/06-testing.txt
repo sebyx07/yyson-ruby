@@ -1,0 +1,130 @@
+YYJson MVP: Comprehensive Test Suite
+=====================================
+
+Inspired by: zsv-ruby spec/ + Oj test/ structure
+
+[X] Set up test framework
+    [X] Use Minitest (lightweight, Ruby stdlib)
+    [ ] Create test/test_helper.rb with setup
+    [X] Ensure extension is loaded before tests
+    [ ] Add helper methods for temp files
+
+[X] Create test/test_parse.rb - Basic parsing tests (in test_basic_parsing.rb)
+    [X] Parse null, true, false
+    [X] Parse integers (positive, negative, zero, large)
+    [X] Parse floats (decimal, scientific notation, negative)
+    [X] Parse strings (empty, ASCII, unicode, escapes)
+    [X] Parse arrays (empty, single, multiple, nested)
+    [X] Parse objects (empty, single key, multiple keys, nested)
+    [X] Parse mixed structures
+    [X] Test symbolize_names option
+    [X] Test freeze option
+    [ ] Test max_nesting option
+
+[ ] Create test/test_parse_errors.rb - Error handling
+    [ ] Invalid JSON syntax
+    [ ] Unclosed brackets/braces
+    [ ] Trailing commas
+    [ ] Invalid escape sequences
+    [ ] Invalid UTF-8
+    [ ] Exceeds max_nesting
+    [ ] Empty input
+    [ ] Verify ParseError includes line/column info
+    [ ] Verify error messages are helpful
+
+[X] Create test/test_generate.rb - Basic generation tests (in test_json_generation.rb)
+    [X] Generate from nil → "null"
+    [X] Generate from true/false
+    [X] Generate from integers
+    [X] Generate from floats (including edge cases)
+    [X] Generate from strings (with escaping)
+    [X] Generate from symbols → strings
+    [X] Generate from arrays
+    [X] Generate from hashes
+    [X] Test pretty printing
+    [X] Test escape_slash option
+
+[ ] Create test/test_round_trip.rb - Parse/generate consistency
+    [X] load(dump(obj)) == obj for basic types (tested in edge cases)
+    [ ] dump(load(json)) == json (normalized)
+    [X] Test with various data structures
+    [X] Test unicode handling
+    [X] Test number precision
+
+[X] Create test/test_compat.rb - JSON gem compatibility
+    [X] Test JSON.parse after mimic
+    [X] Test JSON.generate after mimic
+    [X] Test JSON.load, JSON.dump
+    [X] Test JSON.pretty_generate
+    [X] Test option mapping (JSON gem opts → YYJson opts)
+    [X] Compare output with JSON gem
+    [X] Test drop-in replacement scenarios
+
+[ ] Create test/test_rails.rb - Rails integration
+    [ ] Test YYJson.optimize_rails
+    [ ] Test ActiveSupport::JSON.encode
+    [ ] Test as_json() is called
+    [ ] Test Hash#to_json, Array#to_json
+    [ ] Test ActiveSupport::TimeWithZone serialization
+    [ ] Test ActionController::Parameters
+    [ ] Mock ActiveRecord objects and test serialization
+    [ ] Test Rails global options are respected
+
+[X] Create test/test_modes.rb - Mode-specific behavior
+    [X] Test MODE_STRICT parsing/generation
+    [X] Test MODE_COMPAT parsing/generation
+    [X] Test MODE_RAILS parsing/generation
+    [ ] Test MODE_OBJECT custom serialization
+    [X] Verify mode-specific option defaults
+    [ ] Test invalid mode raises error
+
+[ ] Create test/test_file_io.rb - File operations
+    [ ] Test load_file with valid file
+    [ ] Test load_file with missing file
+    [ ] Test load_file with invalid JSON
+    [ ] Test dump_file creates file
+    [ ] Test dump_file overwrites existing file
+    [ ] Test dump_file with invalid path
+
+[ ] Create test/test_encoding.rb - Encoding handling
+    [X] Test UTF-8 strings (in edge cases)
+    [ ] Test ASCII-8BIT strings
+    [ ] Test invalid UTF-8 handling
+    [X] Test unicode escapes (\uXXXX)
+    [X] Test emoji and special characters
+    [X] Verify output is always UTF-8
+
+[X] Create test/test_edge_cases.rb - Edge cases
+    [X] Very large numbers (> 2^53)
+    [X] Very small numbers (near zero)
+    [X] NaN, Infinity, -Infinity handling per mode
+    [X] Empty strings, arrays, objects
+    [X] Deeply nested structures (near max_nesting)
+    [X] Circular reference detection
+    [X] Very long strings (>1MB)
+    [X] Very large arrays (>100k elements)
+
+[ ] Create test/test_memory.rb - Memory safety
+    [ ] Test GC doesn't crash during parsing
+    [ ] Test GC doesn't crash during generation
+    [ ] Test parser cleanup on errors
+    [ ] Verify no memory leaks (Valgrind if possible)
+    [ ] Test string freezing works
+
+[ ] Create test/test_performance.rb - Performance regression
+    [ ] Simple benchmark tests (not exhaustive)
+    [ ] Ensure operations complete in reasonable time
+    [ ] Test large file handling doesn't hang
+    [ ] Detect obvious performance regressions
+
+[ ] Set up CI testing
+    [ ] Test on Ruby 3.0, 3.1, 3.2, 3.3
+    [ ] Test on Linux, macOS (Windows optional)
+    [ ] Run all tests on every commit
+    [ ] Require 100% test pass rate
+    [ ] Optional: code coverage tracking
+
+[ ] Test documentation
+    [ ] Verify all examples in README work
+    [ ] Test code samples in API docs
+    [ ] Ensure error messages are clear

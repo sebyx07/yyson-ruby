@@ -1,0 +1,64 @@
+YYJson MVP: Core Parsing Implementation
+========================================
+
+Inspired by: zsv-ruby parser architecture + yyjson C library
+
+[X] Download and integrate yyjson C library (v0.10.0+)
+    [X] Auto-download in extconf.rb via Net::HTTP
+    [X] Extract to ext/yyjson/vendor/
+    [X] Add yyjson.c to compilation sources
+    [X] Include yyjson.h in C extension
+
+[X] Implement value_builder.c for JSON→Ruby conversion
+    [X] Build arrays from yyjson arrays with pre-allocation
+    [X] Build hashes from yyjson objects with rb_hash_new_capa()
+    [X] Convert yyjson strings to frozen Ruby strings (memory optimization)
+    [X] Handle numbers: int, float, bigdecimal detection
+    [X] Handle null, true, false, NaN, Infinity
+    [X] Implement symbolize_names option for hash keys
+    [X] Smart allocation: use yyjson_get_len() for pre-sizing collections
+
+[X] Create parser.c with yyjson document wrapper
+    [X] yyjson_parser_t struct to hold yyjson_doc* and options
+    [X] Parse from string using yyjson_read()
+    [X] Parse from file using yyjson_read_file()
+    [X] Handle yyjson errors and convert to Ruby exceptions
+    [X] Free yyjson_doc in GC finalizer
+    [X] Support read flags: YYJSON_READ_ALLOW_COMMENTS, YYJSON_READ_ALLOW_INF_AND_NAN
+
+[X] Implement YYJson.load(string, opts={})
+    [X] Accept JSON string as input
+    [X] Parse options hash (symbolize_names, freeze, mode, etc.)
+    [X] Call yyjson parser
+    [X] Build Ruby object tree using value_builder
+    [X] Return parsed result
+
+[X] Implement YYJson.load_file(path, opts={})
+    [X] Validate file path
+    [X] Use yyjson_read_file() for efficient file parsing
+    [X] Handle file not found errors
+    [X] Return parsed result
+
+[X] Add comprehensive error handling
+    [X] YYJson::ParseError for invalid JSON
+    [X] Include line/column information from yyjson_read_err
+    [X] Include error message and code
+    [X] Safe cleanup on errors (no memory leaks)
+
+[X] Optimize for performance
+    [X] Zero-copy where possible (yyjson_get_str returns pointers)
+    [X] Minimal allocations (reuse buffers)
+    [X] Frozen strings for memory sharing
+    [X] Hash/array pre-allocation based on yyjson size hints
+    [X] SIMD flags in extconf.rb (-msse4.2)
+
+[X] Test basic parsing
+    [X] Parse simple objects: {}, {"key": "value"}
+    [X] Parse arrays: [], [1, 2, 3]
+    [X] Parse nested structures
+    [X] Parse unicode strings
+    [X] Parse numbers (int, float, scientific notation)
+    [X] Parse null, true, false
+    [X] Handle parse errors gracefully
+    [X] Verify symbolize_names works
+    [X] Verify frozen strings

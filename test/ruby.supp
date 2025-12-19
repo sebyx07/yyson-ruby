@@ -1,0 +1,44 @@
+# Valgrind suppression file for Ruby
+# Ruby has known leaks that are not issues with extensions
+
+{
+   ruby_gc
+   Memcheck:Leak
+   ...
+   fun:*gc*
+}
+
+{
+   ruby_iseq
+   Memcheck:Leak
+   ...
+   fun:*iseq*
+}
+
+{
+   ruby_compile
+   Memcheck:Leak
+   ...
+   fun:*compile*
+}
+
+{
+   ruby_prism
+   Memcheck:Leak
+   ...
+   fun:*prism*
+}
+
+{
+   ruby_ibf
+   Memcheck:Leak
+   ...
+   fun:*ibf*
+}
+
+{
+   ruby_vm
+   Memcheck:Leak
+   ...
+   fun:*vm*
+}

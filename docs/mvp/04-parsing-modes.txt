@@ -1,0 +1,88 @@
+YYJson MVP: Multiple Parsing/Generation Modes
+=============================================
+
+Inspired by: Oj's mode system (strict, compat, rails, object, custom)
+
+[X] Define mode enumeration in common.h
+    [X] MODE_STRICT - JSON spec compliant only
+    [X] MODE_COMPAT - JSON gem compatibility (default)
+    [X] MODE_RAILS - ActiveSupport/Rails compatibility
+    [X] MODE_OBJECT - Custom Ruby object serialization
+    [X] MODE_CUSTOM - Fully customizable via callbacks
+
+[X] Implement MODE_STRICT parsing
+    [X] Only allow standard JSON types
+    [X] Reject NaN, Infinity, -Infinity
+    [X] Reject comments
+    [X] No custom object deserialization
+    [X] Strict nesting limit (default 100)
+    [X] Hash keys must be strings (no symbol conversion)
+
+[X] Implement MODE_COMPAT parsing (JSON gem compatible)
+    [X] Allow NaN, Infinity (configurable)
+    [X] Allow C-style comments (configurable)
+    [X] Support create_additions option for custom objects
+    [X] Support symbolize_names option
+    [X] Support max_nesting option
+    [X] Compatible with JSON gem API
+
+[X] Implement MODE_RAILS parsing
+    [X] Symbolize names by default
+    [X] Allow NaN/Infinity
+    [X] Allow comments
+    [ ] Parse ISO8601 strings → Time objects (if create_additions)
+    [ ] Handle Rails-specific serialization formats
+    [X] Compatible with ActiveSupport::JSON.decode
+
+[ ] Implement MODE_OBJECT parsing
+    [ ] Support custom class deserialization
+    [ ] Recognize {"^o": "ClassName", "key": "value"} format (Oj-style)
+    [ ] Call YYJson.register_class() to register deserializers
+    [ ] Support :create_additions => false to disable
+
+[X] Implement MODE_STRICT generation
+    [X] Only generate standard JSON
+    [X] Reject NaN, Infinity (raise error)
+    [X] No custom object serialization
+    [X] Always use double quotes
+    [X] Escape forward slashes
+
+[X] Implement MODE_COMPAT generation (JSON gem compatible)
+    [X] Call to_json() if available
+    [X] Fall back to to_s for unknown types
+    [X] Support NaN/Infinity as null (configurable)
+    [X] Compatible with JSON.generate behavior
+
+[X] Implement MODE_RAILS generation
+    [X] Always call as_json() before serialization
+    [X] Handle ActiveSupport::TimeWithZone
+    [X] Handle BigDecimal → string conversion
+    [X] Escape HTML entities if configured
+    [X] Use standard time format if configured
+
+[ ] Implement MODE_OBJECT generation
+    [ ] Serialize custom objects with class metadata
+    [ ] Format: {"^o": "ClassName", ...attributes}
+    [ ] Call YYJson.register_class() to register serializers
+    [ ] Support round-trip: dump(load(json, mode: :object), mode: :object)
+
+[X] Add options.c for mode-specific option parsing
+    [X] yyjson_options_t struct
+    [X] Parse :mode option (symbol or string)
+    [X] Set yyjson read/write flags based on mode
+    [X] Validate option combinations
+    [X] Set defaults per mode
+
+[X] Test each mode
+    [X] Test strict mode rejects invalid JSON
+    [X] Test compat mode matches JSON gem behavior
+    [X] Test rails mode works with ActiveSupport
+    [ ] Test object mode round-trips custom objects
+    [X] Test mode switching: load(json, mode: X) works
+    [ ] Benchmark mode overhead (should be minimal)
+
+[ ] Document mode differences
+    [ ] Create comparison table
+    [ ] Show use cases for each mode
+    [ ] Migration guide from oj modes
+    [ ] Performance characteristics per mode

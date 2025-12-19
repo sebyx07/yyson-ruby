@@ -1,0 +1,63 @@
+# Compiled extension
+*.so
+*.bundle
+*.o
+*.dll
+
+# Build artifacts
+ext/yyjson/Makefile
+ext/yyjson/mkmf.log
+ext/yyjson/*.o
+
+# Vendor directory (yyjson is auto-downloaded)
+ext/yyjson/vendor/
+
+# Gem build
+*.gem
+pkg/
+
+# Bundle
+.bundle/
+vendor/bundle/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Coverage
+coverage/
+.coverage
+
+# Documentation
+doc/
+rdoc/
+.yardoc/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Test artifacts
+test/tmp/
+
+# Ruby version managers
+.ruby-version
+.ruby-gemset
+.rvmrc
+
+# Gemfile.lock for gems
+Gemfile.lock
+
+# Environment
+.env
+.env.local

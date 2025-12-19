@@ -1,0 +1,71 @@
+YYJson MVP: Rails Integration (Drop-in Replacement)
+===================================================
+
+Inspired by: Oj's optimize_rails() + JSON gem mimic strategy
+
+[X] Create lib/yyjson/mimic.rb - JSON gem compatibility layer
+    [X] Monkey-patch ::JSON module if not loaded
+    [X] Implement JSON.parse(source, opts={}) → YYJson.load
+    [X] Implement JSON.generate(obj, opts={}) → YYJson.dump
+    [X] Implement JSON.load(source, opts={})
+    [X] Implement JSON.dump(obj, opts={})
+    [X] Implement JSON.pretty_generate(obj)
+    [X] Map JSON gem options to YYJson options
+    [X] Define JSON::ParserError → YYJson::ParseError
+    [X] Define JSON::GeneratorError → YYJson::GenerateError
+
+[X] Create lib/yyjson/rails.rb - Rails-specific integration
+    [X] Define YYJson::Rails module
+    [X] Implement YYJson.optimize_rails() one-liner setup
+    [X] Replace ActiveSupport::JSON.encode with YYJson
+    [X] Set ActiveSupport.json_encoder = YYJson::Rails::Encoder
+    [X] Honor ActiveSupport global options:
+        [X] ActiveSupport::JSON::Encoding.use_standard_json_time_format
+        [X] ActiveSupport::JSON::Encoding.escape_html_entities_in_json
+        [X] ActiveSupport::JSON::Encoding.time_precision
+
+[X] Implement YYJson::Rails::Encoder
+    [X] Implement .encode(value, options={})
+    [X] Call as_json() on objects before encoding
+    [X] Support Rails-specific options
+    [X] Handle ActionController::Parameters
+    [X] Handle ActiveRecord objects
+    [X] Handle ActiveSupport::TimeWithZone
+
+[X] Add as_json() support in C extension
+    [X] Check if object responds to :as_json
+    [X] Call obj.as_json() before dumping
+    [X] Use result for JSON generation
+    [X] Handle as_json(options) argument passing
+    [X] Cache method lookup for performance
+
+[X] Optimize common Rails classes (optional for MVP)
+    [X] Fast path for Hash#as_json
+    [X] Fast path for Array#as_json
+    [X] Fast path for String#as_json
+    [X] Fast path for Numeric#as_json
+    [X] Fast path for Time/DateTime/Date#as_json
+
+[X] Create Railtie for auto-configuration
+    [X] lib/yyjson/railtie.rb
+    [X] Auto-call optimize_rails in Rails apps
+    [X] Add config.yyjson.mode option
+    [X] Add config.yyjson.symbolize_names option
+    [X] Log YYJson activation on startup
+
+[ ] Test Rails integration
+    [ ] Test JSON.parse works after mimic
+    [ ] Test JSON.generate works after mimic
+    [ ] Test ActiveSupport::JSON.encode
+    [ ] Test .as_json() is called on objects
+    [ ] Test ActiveRecord model serialization
+    [ ] Test controller JSON rendering (render json: @model)
+    [ ] Test ActiveSupport global options are honored
+    [ ] Test performance improvement vs standard JSON gem
+
+[ ] Documentation for Rails users
+    [ ] Quick start: add to Gemfile, call optimize_rails
+    [ ] Configuration options
+    [ ] Compatibility notes
+    [ ] Migration guide from oj or standard JSON
+    [ ] Performance benchmarks in Rails context

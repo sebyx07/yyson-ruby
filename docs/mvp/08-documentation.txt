@@ -1,0 +1,174 @@
+YYJson MVP: Documentation & Developer Guide
+===========================================
+
+[ ] Create README.md - Main documentation
+    [ ] Project description and features
+    [ ] Performance claims with numbers (e.g., "3x faster than JSON gem")
+    [ ] Installation instructions (gem install, Gemfile)
+    [ ] Quick start examples:
+        - Basic parsing: YYJson.load('{"key": "value"}')
+        - Basic generation: YYJson.dump({key: "value"})
+        - File operations: load_file, dump_file
+    [ ] Rails integration quick start:
+        - gem 'yyjson'
+        - YYJson.optimize_rails
+    [ ] API overview with method signatures
+    [ ] Options reference table
+    [ ] Modes comparison table
+    [ ] Benchmark results summary
+    [ ] Link to detailed docs
+    [ ] Contributing guidelines
+    [ ] License (MIT)
+
+[ ] Create docs/QUICKSTART.md
+    [ ] Step-by-step installation
+    [ ] Basic usage patterns
+    [ ] Common options explained
+    [ ] Troubleshooting common issues
+    [ ] Next steps (link to API reference)
+
+[ ] Create docs/API_REFERENCE.md
+    [ ] Module methods:
+        - YYJson.load(source, opts = {})
+        - YYJson.dump(obj, opts = {})
+        - YYJson.parse (alias for load)
+        - YYJson.generate (alias for dump)
+        - YYJson.load_file(path, opts = {})
+        - YYJson.dump_file(obj, path, opts = {})
+    [ ] Options reference:
+        - :symbolize_names (boolean)
+        - :freeze (boolean)
+        - :mode (:strict, :compat, :rails, :object)
+        - :max_nesting (integer)
+        - :allow_nan (boolean)
+        - :allow_comments (boolean)
+        - :indent (integer or string)
+        - :pretty (boolean)
+        - :escape_slash (boolean)
+    [ ] Exception classes:
+        - YYJson::Error
+        - YYJson::ParseError
+        - YYJson::GenerateError
+    [ ] Examples for each method
+    [ ] Return value types
+    [ ] Thread safety notes
+
+[ ] Create docs/RAILS.md - Rails integration guide
+    [ ] Installation in Rails app
+    [ ] Calling YYJson.optimize_rails
+    [ ] What gets optimized
+    [ ] ActiveSupport::JSON compatibility
+    [ ] Using in controllers (render json:)
+    [ ] Using in models (.to_json, .as_json)
+    [ ] Configuration options
+    [ ] Performance comparison in Rails
+    [ ] Migration from Oj or MultiJson
+    [ ] Troubleshooting Rails integration
+
+[ ] Create docs/MODES.md - Parsing modes explained
+    [ ] Detailed explanation of each mode
+    [ ] Use cases for each mode
+    [ ] Option defaults per mode
+    [ ] Performance characteristics
+    [ ] Compatibility notes
+    [ ] Examples of mode-specific behavior
+    [ ] When to switch modes
+
+[ ] Create docs/BENCHMARKS.md - Performance documentation
+    [ ] Benchmark methodology
+    [ ] Hardware/software specs
+    [ ] Parsing benchmarks (table/graphs)
+    [ ] Generation benchmarks (table/graphs)
+    [ ] Memory usage comparison
+    [ ] Rails integration benchmarks
+    [ ] Comparison with JSON gem, Oj, Yajl
+    [ ] Speedup multipliers highlighted
+    [ ] How to run benchmarks locally
+
+[ ] Create docs/ARCHITECTURE.md - C extension design
+    [ ] High-level architecture diagram
+    [ ] Component overview:
+        - yyjson_ext.c (entry point)
+        - parser.c (parsing logic)
+        - value_builder.c (JSON → Ruby)
+        - object_dumper.c (Ruby → JSON)
+        - writer.c (JSON output)
+        - options.c (option parsing)
+    [ ] Data flow diagrams
+    [ ] Memory management strategy
+    [ ] GC integration details
+    [ ] Performance optimization techniques
+    [ ] yyjson C library integration
+    [ ] Build system (extconf.rb)
+
+[ ] Create CLAUDE.md - AI/Developer guide
+    [ ] Essential development commands:
+        - rake compile (build extension)
+        - rake test (run tests)
+        - rake benchmark (run benchmarks)
+        - rake clean (clean build)
+    [ ] Critical architectural invariants:
+        - Always free yyjson_doc in GC finalizer
+        - Never allocate Ruby objects during GC mark
+        - Freeze strings for memory efficiency
+        - Pre-allocate collections when size is known
+    [ ] Common pitfalls and solutions:
+        - GC safety violations
+        - Memory leaks in error paths
+        - Encoding issues
+        - Circular reference handling
+    [ ] Testing strategy
+    [ ] Debugging tips (gdb, Valgrind)
+    [ ] Code style guidelines
+    [ ] How to add new features
+    [ ] Release checklist
+
+[ ] Create CHANGELOG.md
+    [ ] Version 0.1.0 - MVP release
+        - Initial release
+        - Core parsing and generation
+        - Rails integration
+        - JSON gem compatibility
+        - Performance benchmarks
+    [ ] Follow Keep a Changelog format
+    [ ] Version numbering (semantic versioning)
+
+[ ] Create CONTRIBUTING.md
+    [ ] How to report bugs
+    [ ] How to request features
+    [ ] Development setup instructions
+    [ ] Running tests locally
+    [ ] Code style expectations
+    [ ] Pull request process
+    [ ] Licensing (contributors agree to MIT)
+
+[ ] Create LICENSE
+    [ ] MIT License text
+    [ ] Copyright holder
+    [ ] Year
+
+[ ] Code documentation (inline comments)
+    [ ] Document all public C functions with /** style
+    [ ] Explain non-obvious algorithms
+    [ ] Reference yyjson docs where relevant
+    [ ] Document critical sections (GC, memory management)
+    [ ] Add SAFETY notes where memory/GC issues exist
+
+[ ] Generate RDoc/YARD documentation (optional)
+    [ ] Extract documentation from C and Ruby code
+    [ ] Generate HTML docs
+    [ ] Publish to GitHub Pages
+
+[ ] Create examples directory
+    [ ] examples/basic_usage.rb
+    [ ] examples/rails_integration.rb
+    [ ] examples/custom_serialization.rb
+    [ ] examples/file_operations.rb
+    [ ] examples/performance_comparison.rb
+
+[ ] Add badges to README
+    [ ] Gem version
+    [ ] CI status
+    [ ] Code coverage (if using)
+    [ ] License
+    [ ] Documentation link

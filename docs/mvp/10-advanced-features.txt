@@ -1,0 +1,128 @@
+YYJson MVP: Advanced Features (Post-MVP / Future)
+=================================================
+
+These features can be added after the core MVP is stable.
+
+[ ] Streaming parser (SAX-style)
+    [ ] YYJson.parse_stream(io) { |event, value| }
+    [ ] Events: start_object, end_object, key, value, etc.
+    [ ] Memory efficient for very large files
+    [ ] Inspired by Oj::Saj and JSON::Stream
+
+[ ] Custom object serialization registry
+    [ ] YYJson.register_class(klass, serializer, deserializer)
+    [ ] Store mapping of Class => serialization logic
+    [ ] Auto-serialize/deserialize registered classes
+    [ ] Support both block and method name forms
+    [ ] Example: YYJson.register_class(Point) do |obj|
+        { x: obj.x, y: obj.y, '^o': 'Point' }
+      end
+
+[ ] Partial parsing (extract specific paths)
+    [ ] YYJson.extract(json, 'users[0].name')
+    [ ] JSONPath or JSONPointer syntax
+    [ ] Returns value at path without parsing entire document
+    [ ] Uses yyjson's pointer API
+
+[ ] Schema validation
+    [ ] YYJson.validate(json, schema)
+    [ ] JSON Schema Draft 7 support
+    [ ] Fast validation using yyjson
+    [ ] Return validation errors with paths
+
+[ ] JSON Patch support (RFC 6902)
+    [ ] YYJson.patch(json, patch_operations)
+    [ ] Operations: add, remove, replace, move, copy, test
+    [ ] Apply patches efficiently
+
+[ ] JSON Merge Patch support (RFC 7386)
+    [ ] YYJson.merge(json1, json2)
+    [ ] Merge two JSON documents
+
+[ ] JSONC support (JSON with comments)
+    [ ] Full JSONC specification support
+    [ ] Preserve comments on round-trip (optional)
+    [ ] Use yyjson's comment support
+
+[ ] BSON support
+    [ ] YYJson.load_bson(bytes)
+    [ ] YYJson.dump_bson(obj)
+    [ ] MongoDB compatibility
+
+[ ] MessagePack support
+    [ ] YYJson.load_msgpack(bytes)
+    [ ] YYJson.dump_msgpack(obj)
+    [ ] Binary format alternative to JSON
+
+[ ] Incremental parsing
+    [ ] Parser.new.feed(chunk)
+    [ ] Parse JSON in chunks (network streaming)
+    [ ] Callback when complete objects parsed
+
+[ ] Pretty printing with color (CLI)
+    [ ] yyjson-format command-line tool
+    [ ] Syntax highlighting for terminal
+    [ ] Format validation
+
+[ ] Diff two JSON documents
+    [ ] YYJson.diff(json1, json2)
+    [ ] Show differences with paths
+    [ ] Output as JSON Patch
+
+[ ] JSON canonicalization (RFC 8785)
+    [ ] YYJson.canonicalize(json)
+    [ ] Deterministic JSON for hashing/signing
+    [ ] Sorted keys, minimal whitespace
+
+[ ] Performance monitoring/profiling
+    [ ] YYJson.stats - parsing statistics
+    [ ] Track calls, time, memory
+    [ ] Helpful for optimization
+
+[ ] C API for other gems
+    [ ] Expose yyjson functions for other C extensions
+    [ ] Allow other gems to use yyjson without bundling
+    [ ] Document C API
+
+[ ] JRuby support (Java FFI)
+    [ ] Use JNI to call yyjson C library
+    [ ] Or pure Java implementation
+    [ ] Feature parity with MRI version
+
+[ ] TruffleRuby support
+    [ ] Native extensions or LLVM compilation
+    [ ] Test compatibility
+
+[ ] WebAssembly build
+    [ ] Compile to WASM for browser use
+    [ ] ruby.wasm compatibility
+
+[ ] Lazy parsing mode
+    [ ] YYJson.lazy_load(json)
+    [ ] Returns proxy objects
+    [ ] Parse values on-demand when accessed
+    [ ] Memory efficient for large documents
+
+[ ] Decimal number handling
+    [ ] Option to preserve exact decimal representation
+    [ ] Avoid float precision loss
+    [ ] Automatically use BigDecimal
+
+[ ] Custom allocators
+    [ ] Allow users to provide custom memory allocators
+    [ ] Integration with jemalloc or other allocators
+
+[ ] Zero-copy mode (advanced)
+    [ ] Keep parsed strings pointing to original buffer
+    [ ] Requires buffer lifetime management
+    [ ] Maximum performance
+
+[ ] Concurrent parsing
+    [ ] Thread-safe parser
+    [ ] Parse multiple documents in parallel
+    [ ] Use yyjson in multi-threaded context
+
+[ ] ActiveRecord column serialization
+    [ ] serialize :data, YYJson::Serializer
+    [ ] Drop-in for ActiveRecord JSON columns
+    [ ] Transparent usage in models

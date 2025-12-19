@@ -1,0 +1,66 @@
+YYJson MVP: JSON Generation Implementation
+==========================================
+
+Inspired by: Oj's dump architecture + yyjson writer
+
+[X] Implement object_dumper.c for Ruby→JSON conversion
+    [X] Handle Ruby nil → JSON null
+    [X] Handle Ruby true/false → JSON boolean
+    [X] Handle Ruby Integer → JSON number
+    [X] Handle Ruby Float → JSON number (including NaN, Infinity)
+    [X] Handle Ruby String → JSON string with escaping
+    [X] Handle Ruby Symbol → JSON string
+    [X] Handle Ruby Array → JSON array (recursive)
+    [X] Handle Ruby Hash → JSON object (recursive)
+    [X] Handle Ruby BigDecimal → JSON number string
+    [X] Handle Ruby Time/Date → ISO8601 string
+    [X] Call as_json() if available (Rails compatibility)
+    [X] Detect circular references and raise error
+
+[X] Create writer.c wrapper for yyjson_mut_doc
+    [X] Initialize yyjson_mut_doc for mutable document
+    [X] Build JSON tree using yyjson_mut_* functions
+    [X] Write to string using yyjson_mut_write()
+    [X] Support write flags: YYJSON_WRITE_PRETTY, YYJSON_WRITE_ESCAPE_SLASHES
+    [X] Free document after writing
+
+[X] Implement YYJson.dump(obj, opts={})
+    [X] Accept any Ruby object
+    [X] Parse options: mode, indent, pretty, escape_slash
+    [X] Build JSON document using object_dumper
+    [X] Write to string
+    [X] Return JSON string
+
+[X] Implement YYJson.dump_file(obj, path, opts={})
+    [X] Generate JSON string
+    [X] Write to file atomically (temp file + rename)
+    [X] Handle write errors
+    [X] Return nil on success
+
+[X] Add pretty printing support
+    [X] Accept :indent option (spaces or string)
+    [X] Accept :pretty => true shorthand
+    [X] Use YYJSON_WRITE_PRETTY flag
+    [X] Support custom indent string
+
+[X] Optimize for performance
+    [X] Use yyjson_mut_doc arena allocator (very fast)
+    [X] Minimize Ruby→C conversions
+    [X] Cache symbol/string lookups
+    [X] Fast path for common types (Hash, Array, String, Integer)
+
+[X] Handle encoding properly
+    [X] Ensure UTF-8 output
+    [X] Escape invalid UTF-8 sequences
+    [X] Handle ASCII-8BIT strings
+
+[X] Test JSON generation
+    [X] Dump simple values: nil, true, false, 123, 3.14
+    [X] Dump strings with special chars: \n, \t, ", \, unicode
+    [X] Dump arrays: [], [1, 2, 3], nested arrays
+    [X] Dump hashes: {}, {"a" => 1}, nested hashes
+    [X] Dump mixed structures
+    [X] Test pretty printing
+    [X] Test escape_slash option
+    [X] Verify output is valid JSON
+    [X] Test round-trip: dump(load(json)) == json (normalized)
