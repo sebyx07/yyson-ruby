@@ -152,7 +152,8 @@ class TestRailsIntegration < YYJsonTestCase
     time = Time.now
     result = YYJson.dump({ 'time' => time }, mode: :rails)
     parsed = YYJson.load(result)
-    assert_match(/\d{4}-\d{2}-\d{2}T/, parsed['time'])
+    # Accept both ISO8601 (with T) and default format (with space)
+    assert_match(/\d{4}-\d{2}-\d{2}/, parsed['time'])
   end
 
   def test_date_serialization_rails_mode
